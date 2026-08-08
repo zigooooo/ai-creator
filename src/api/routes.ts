@@ -35,9 +35,24 @@ router.post('/workflows/autonomy-level', (req, res) => {
 // Trigger End-to-End Autonomous Mission Demo
 router.post('/demo/run', async (req, res) => {
   const { simulatedArticle } = req.body;
-  // Run asynchronously so response returns immediately
-  autonomyLoop.runFullLoop(simulatedArticle).catch((err: any) => console.error('Demo Loop Error:', err));
-  res.json({ success: true, message: 'Autonomous research mission initiated in background.' });
+  try {
+    await autonomyLoop.runFullLoop(simulatedArticle);
+    res.json({ success: true, message: 'Autonomous research mission completed successfully.', state: stateMachine.getState() });
+  } catch (err: any) {
+    console.error('Demo Loop Error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Vercel 24/7 Cron Execution Endpoint
+router.get('/cron/tick', async (req, res) => {
+  try {
+    await autonomyLoop.runFullLoop();
+    res.json({ success: true, message: '24/7 Autonomous agent loop tick executed.', timestamp: new Date().toISOString() });
+  } catch (err: any) {
+    console.error('Cron Loop Error:', err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Content Approval endpoint

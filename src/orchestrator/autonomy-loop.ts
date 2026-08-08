@@ -15,8 +15,10 @@ import { QualityGateAgent } from '../agents/quality.agent.js';
 import { PublisherAgent } from '../agents/publisher.agent.js';
 import { CuriosityAgent } from '../agents/curiosity.agent.js';
 
+import { createLLMProvider } from '../providers/provider-factory.js';
+
 export class AutonomyLoopOrchestrator {
-  private llm = new MockLLMProvider();
+  private llm = createLLMProvider();
   private embedding = new MockEmbeddingProvider();
   private search = new MockSearchProvider();
   private news = new MockNewsProvider();
