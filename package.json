@@ -1,5 +1,5 @@
 {
-  "name": "autonomous-ai-creator",
+  "name": "ai-creator",
   "version": "1.0.0",
   "description": "Autonomous AI Research and Creation Platform — From Prompt-Driven to Curiosity-Driven AI",
   "main": "dist/server.js",
