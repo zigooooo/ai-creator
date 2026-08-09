@@ -146,10 +146,10 @@ export const App: React.FC = () => {
         <div className="logo-group">
           <div className="logo-badge">AUTONOMOUS AI</div>
           <div>
-            <h1 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
+            <h1 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e8f0', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
               Autonomous AI Creator
             </h1>
-            <div style={{ fontSize: '0.72rem', color: '#e2e8f0' }}>
+            <div style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
               From Prompt-Driven AI to Curiosity-Driven AI
             </div>
           </div>
