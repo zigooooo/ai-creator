@@ -169,6 +169,12 @@ body {
   gap: 1rem;
 }
 
+.responsive-auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
 .journal-container {
   height: 700px;
 }
@@ -190,13 +196,16 @@ body {
 }
 
 /* ========================================================
-   Android & Mobile Touch Ergonomics & Responsive System
+   Mobile & Tablet Touch Ergonomics & Responsive System
    ======================================================== */
 
 .main-content-container {
   padding: 1.5rem;
   max-width: 1600px;
   margin: 0 auto;
+  min-height: calc(100vh - 75px);
+  min-height: calc(100dvh - 75px);
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
 }
 
 button, .nav-btn, a {
@@ -219,6 +228,12 @@ button, .nav-btn, a {
   gap: 0.5rem;
 }
 
+.autonomy-regime-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35rem;
+}
+
 /* 1200px Breakpoint: Laptops & Large Tablets */
 @media (max-width: 1200px) {
   .dashboard-grid {
@@ -237,7 +252,8 @@ button, .nav-btn, a {
     flex-direction: column;
     align-items: stretch;
     gap: 0.85rem;
-    padding: 0.85rem 1rem;
+    padding: 0.85rem 1.25rem;
+    padding-top: max(0.85rem, env(safe-area-inset-top));
   }
 
   .nav-tabs {
@@ -248,6 +264,7 @@ button, .nav-btn, a {
     scrollbar-width: none; /* Firefox */
     display: flex;
     gap: 0.4rem;
+    scroll-snap-type: x mandatory;
   }
 
   .nav-tabs::-webkit-scrollbar {
@@ -256,9 +273,10 @@ button, .nav-btn, a {
 
   .nav-btn {
     flex-shrink: 0;
-    min-height: 44px; /* Android touch target standard */
-    padding: 0.6rem 0.9rem;
-    font-size: 0.82rem;
+    min-height: 44px; /* Touch target standard */
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    scroll-snap-align: start;
   }
 
   .responsive-grid-4 {
@@ -282,7 +300,7 @@ button, .nav-btn, a {
 
   .glass-card {
     padding: 1.1rem !important;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .responsive-grid-2 {
@@ -303,10 +321,11 @@ button, .nav-btn, a {
   }
 }
 
-/* 576px Breakpoint: Standard Android Mobile Viewports (Pixel, Galaxy, OnePlus) */
+/* 576px Breakpoint: Mobile Viewports (Pixel, Galaxy, iPhone) */
 @media (max-width: 576px) {
   .header-bar {
-    padding: 0.75rem 0.6rem;
+    padding: 0.75rem 0.75rem;
+    padding-top: max(0.75rem, env(safe-area-inset-top));
   }
 
   .logo-group {
@@ -318,7 +337,11 @@ button, .nav-btn, a {
     padding: 0.3rem 0.5rem;
   }
 
-  .responsive-grid-4,
+  .responsive-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
   .responsive-grid-2,
   .responsive-two-col {
     grid-template-columns: 1fr;
@@ -326,14 +349,20 @@ button, .nav-btn, a {
   }
 
   .glass-card {
-    padding: 0.85rem !important;
+    padding: 0.95rem !important;
   }
 
   .journal-container {
-    height: 360px;
+    height: 380px;
   }
 
-  /* Make action buttons fit 100% width on Android portrait */
+  /* Autonomy buttons: wrap if tight on screen */
+  .autonomy-regime-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.25rem;
+  }
+
+  /* Make action buttons fit 100% width on Mobile portrait */
   .mobile-btn-stack {
     flex-direction: column !important;
   }
@@ -341,16 +370,16 @@ button, .nav-btn, a {
   .mobile-btn-stack > button {
     width: 100% !important;
     flex: 1 1 100% !important;
-    min-height: 46px; /* Android comfort touch height */
+    min-height: 46px; /* Comfort touch height */
   }
 
   pre {
-    font-size: 0.72rem !important;
-    padding: 0.6rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.65rem !important;
   }
 }
 
-/* 380px Breakpoint: Compact Android Handsets */
+/* 380px Breakpoint: Compact Handsets */
 @media (max-width: 380px) {
   body {
     font-size: 0.85rem;
@@ -361,13 +390,24 @@ button, .nav-btn, a {
   }
 
   .nav-btn {
-    padding: 0.5rem 0.7rem;
-    font-size: 0.78rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .glass-card {
-    padding: 0.75rem !important;
+    padding: 0.8rem !important;
+  }
+
+  .autonomy-regime-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .autonomy-regime-grid > button {
+    padding: 0.5rem 0.1rem !important;
+    font-size: 0.7rem !important;
+    min-height: 40px;
   }
 }
+
 
 

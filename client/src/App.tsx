@@ -146,16 +146,16 @@ export const App: React.FC = () => {
         <div className="logo-group">
           <div className="logo-badge">AUTONOMOUS AI</div>
           <div>
-            <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.3px' }}>
+            <h1 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
               Autonomous AI Creator
             </h1>
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+            <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>
               From Prompt-Driven AI to Curiosity-Driven AI
             </div>
           </div>
         </div>
 
-        <nav className="nav-tabs">
+        <nav className="nav-tabs" aria-label="Main Navigation">
           <button className={`nav-btn ${activeTab === 'command' ? 'active' : ''}`} onClick={() => setActiveTab('command')}>Command Center</button>
           <button className={`nav-btn ${activeTab === 'discovery' ? 'active' : ''}`} onClick={() => setActiveTab('discovery')}>Discovery Feed</button>
           <button className={`nav-btn ${activeTab === 'lab' ? 'active' : ''}`} onClick={() => setActiveTab('lab')}>Experiment Lab</button>

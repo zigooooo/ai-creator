@@ -10,8 +10,8 @@ export const SystemHealth: React.FC<Props> = ({ logs }) => {
       <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#34d399', marginBottom: '0.85rem' }}>
         ⚡ System Health & Agent Telemetry
       </h3>
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <table style={{ width: '100%', minWidth: '520px', borderCollapse: 'collapse', fontSize: '0.78rem' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', textAlign: 'left' }}>
               <th style={{ padding: '0.5rem' }}>TIMESTAMP</th>

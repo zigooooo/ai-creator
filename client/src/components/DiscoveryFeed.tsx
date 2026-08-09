@@ -19,7 +19,7 @@ export const DiscoveryFeed: React.FC<Props> = ({ trends, gaps, opportunities }) 
           trends.map((t) => (
             <div key={t.id} style={{ background: 'rgba(0,0,0,0.25)', padding: '0.75rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
               <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#f8fafc' }}>{t.topicName}</div>
-              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.4rem', fontSize: '0.75rem', color: '#94a3b8' }}>
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.4rem', fontSize: '0.75rem', color: '#94a3b8', flexWrap: 'wrap' }}>
                 <span>Velocity: <strong style={{ color: '#34d399' }}>{t.velocity}%</strong></span>
                 <span>Novelty: <strong style={{ color: '#818cf8' }}>{t.novelty}%</strong></span>
                 <span>Score: <strong style={{ color: '#fbbf24' }}>{t.normalizedScore}/100</strong></span>
@@ -57,7 +57,7 @@ export const DiscoveryFeed: React.FC<Props> = ({ trends, gaps, opportunities }) 
         ) : (
           opportunities.map((o) => (
             <div key={o.id} style={{ background: 'rgba(0,0,0,0.25)', padding: '0.75rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.4rem' }}>
                 <span style={{ fontWeight: 600, fontSize: '0.85rem', color: '#f8fafc' }}>{o.title}</span>
                 <span className="badge badge-emerald">{o.score?.finalScore}/100</span>
               </div>

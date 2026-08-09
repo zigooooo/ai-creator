@@ -48,7 +48,7 @@ export const AnalyticsView: React.FC<Props> = ({ analytics, questions }) => {
         ) : (
           questions.map((q) => (
             <div key={q.id} style={{ background: 'rgba(0,0,0,0.25)', padding: '0.75rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.4rem' }}>
                 <span style={{ fontWeight: 600, fontSize: '0.85rem', color: '#f8fafc' }}>{q.question}</span>
                 <span className={`badge ${q.selected ? 'badge-emerald' : 'badge-indigo'}`}>
                   {q.selected ? 'SELECTED NEXT MISSION' : `SCORE ${q.rankedScore}`}

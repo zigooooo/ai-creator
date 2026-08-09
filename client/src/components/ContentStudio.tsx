@@ -39,6 +39,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
               whiteSpace: 'pre-wrap',
               maxHeight: '220px',
               overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
               marginBottom: '1rem'
             }}>
               {latestDraft.body}
@@ -49,7 +50,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
                 <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#38bdf8', marginBottom: '0.4rem' }}>
                   QUALITY & ORIGINALITY GATE SCORE: {latestReview.score?.overallScore}/100
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.75rem', color: '#94a3b8' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.5rem', fontSize: '0.75rem', color: '#94a3b8' }}>
                   <div>Factual Correctness: <strong style={{ color: '#34d399' }}>{latestReview.score?.factualCorrectness}%</strong></div>
                   <div>Citation Validity: <strong style={{ color: '#34d399' }}>{latestReview.score?.citationValidity}%</strong></div>
                   <div>Originality: <strong style={{ color: '#818cf8' }}>{latestReview.score?.originality}%</strong></div>
@@ -64,6 +65,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
                 style={{
                   width: '100%',
                   padding: '0.65rem',
+                  minHeight: '44px',
                   background: 'linear-gradient(135deg, #10b981, #059669)',
                   border: 'none',
                   borderRadius: '8px',
@@ -77,7 +79,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
                 ✅ Human Approval: Approve & Publish Content
               </button>
             ) : (
-              <div className="badge badge-emerald" style={{ display: 'block', textAlign: 'center', padding: '0.6rem' }}>
+              <div className="badge badge-emerald" style={{ display: 'block', textAlign: 'center', padding: '0.6rem', wordBreak: 'break-all' }}>
                 PUBLISHED TO {latestPub.platform.toUpperCase()} ({latestPub.publishedUrl})
               </div>
             )}

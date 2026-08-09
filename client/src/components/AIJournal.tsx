@@ -10,7 +10,7 @@ export const AIJournal: React.FC<Props> = ({ events }) => {
       <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
         📓 Autonomous AI Event Journal
       </h3>
-      <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.6rem', paddingRight: '0.2rem' }}>
+      <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch', display: 'flex', flexDirection: 'column', gap: '0.6rem', paddingRight: '0.2rem' }}>
         {events.length === 0 ? (
           <div style={{ fontSize: '0.8rem', color: '#64748b' }}>No system events logged yet.</div>
         ) : (
@@ -20,7 +20,8 @@ export const AIJournal: React.FC<Props> = ({ events }) => {
               borderLeft: '3px solid var(--accent-indigo)',
               padding: '0.6rem 0.8rem',
               borderRadius: '0 6px 6px 0',
-              fontSize: '0.8rem'
+              fontSize: '0.8rem',
+              wordBreak: 'break-word'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', color: '#94a3b8', fontSize: '0.7rem' }}>
                 <span style={{ fontWeight: 600, color: '#38bdf8' }}>{evt.agentName || 'System'}</span>

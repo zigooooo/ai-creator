@@ -46,6 +46,7 @@ export const ExperimentLab: React.FC<Props> = ({ hypotheses, experiments }) => {
               fontSize: '0.78rem',
               color: '#34d399',
               overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
               maxHeight: '180px'
             }}>
               {latestSpec.code}
@@ -55,7 +56,7 @@ export const ExperimentLab: React.FC<Props> = ({ hypotheses, experiments }) => {
 
         {latestRun && (
           <div style={{ background: 'rgba(0,0,0,0.25)', padding: '0.85rem', borderRadius: '8px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.4rem' }}>
               <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#94a3b8' }}>RUN STATUS</span>
               <span className={`badge ${latestRun.status === 'success' ? 'badge-emerald' : 'badge-amber'}`}>
                 {latestRun.status.toUpperCase()} ({latestRun.executionTimeMs}ms)
@@ -72,7 +73,9 @@ export const ExperimentLab: React.FC<Props> = ({ hypotheses, experiments }) => {
                   fontFamily: 'var(--font-code)',
                   fontSize: '0.75rem',
                   color: '#fbbf24',
-                  marginTop: '0.3rem'
+                  marginTop: '0.3rem',
+                  overflowX: 'auto',
+                  WebkitOverflowScrolling: 'touch'
                 }}>
                   {JSON.stringify(latestResult.metrics, null, 2)}
                 </pre>

@@ -25,9 +25,11 @@ export const KnowledgeGraph: React.FC<Props> = ({ knowledge }) => {
         <div>
           <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#94a3b8', marginBottom: '0.5rem' }}>RELATIONSHIPS</div>
           {knowledge.relationships.map((r) => (
-            <div key={r.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '0.6rem', borderRadius: '6px', marginBottom: '0.4rem' }}>
-              <div style={{ fontWeight: 600, fontSize: '0.8rem', color: '#818cf8' }}>
-                Entity #{r.sourceEntityId} → <span className="badge badge-indigo">{r.relationshipType}</span> → Entity #{r.targetEntityId}
+            <div key={r.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '0.6rem', borderRadius: '6px', marginBottom: '0.4rem', wordBreak: 'break-word' }}>
+              <div style={{ fontWeight: 600, fontSize: '0.8rem', color: '#818cf8', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.3rem' }}>
+                <span>Entity #{r.sourceEntityId} →</span>
+                <span className="badge badge-indigo">{r.relationshipType}</span>
+                <span>→ Entity #{r.targetEntityId}</span>
               </div>
               <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.2rem' }}>{r.context}</div>
             </div>
