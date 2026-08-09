@@ -231,6 +231,8 @@ body {
 
 .main-content-container {
   padding: 1.5rem;
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
   max-width: 1600px;
   margin: 0 auto;
   min-height: calc(100vh - 75px);
@@ -245,10 +247,16 @@ a {
   touch-action: manipulation;
 }
 
+button:active,
+.nav-btn:active {
+  transform: scale(0.98);
+  opacity: 0.92;
+}
+
 /* Touch-friendly min sizes */
 .btn-touch {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 48px;
+  min-width: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -316,18 +324,23 @@ a {
     gap: 0.85rem;
     padding: 0.85rem 1.25rem;
     padding-top: max(0.85rem, env(safe-area-inset-top));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
   }
 
   .nav-tabs {
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     padding: 0.35rem;
     scrollbar-width: none;
     /* Firefox */
     display: flex;
     gap: 0.4rem;
     scroll-snap-type: x mandatory;
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
   }
 
   .nav-tabs::-webkit-scrollbar {
@@ -337,9 +350,9 @@ a {
 
   .nav-btn {
     flex-shrink: 0;
-    min-height: 44px;
+    min-height: 46px;
     /* Touch target standard */
-    padding: 0.6rem 1rem;
+    padding: 0.65rem 1.1rem;
     font-size: 0.85rem;
     scroll-snap-align: start;
   }
@@ -356,16 +369,19 @@ a {
 /* 768px Breakpoint: Mobile Phones & Portrait Tablets */
 @media (max-width: 768px) {
   body {
-    font-size: 0.92rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.92rem);
   }
 
   .main-content-container {
     padding: 0.85rem;
+    padding-left: max(0.85rem, env(safe-area-inset-left));
+    padding-right: max(0.85rem, env(safe-area-inset-right));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
 
   .glass-card {
-    padding: 1.1rem !important;
-    border-radius: 12px;
+    padding: 1rem !important;
+    border-radius: 14px;
   }
 
   .responsive-grid-2 {
@@ -374,12 +390,13 @@ a {
   }
 
   .journal-container {
-    height: 420px;
+    height: 440px;
   }
 
   /* Table overflow scroll for mobile */
   table {
     display: block;
+    width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -391,6 +408,8 @@ a {
   .header-bar {
     padding: 0.75rem 0.75rem;
     padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
   }
 
   .logo-group {
@@ -399,7 +418,7 @@ a {
 
   .logo-badge {
     font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
+    padding: 0.3rem 0.5.rem;
   }
 
   .responsive-grid-4 {
@@ -414,7 +433,7 @@ a {
   }
 
   .glass-card {
-    padding: 0.95rem !important;
+    padding: 0.88rem !important;
   }
 
   .journal-container {
@@ -427,51 +446,89 @@ a {
     gap: 0.25rem;
   }
 
+  .autonomy-regime-grid > button {
+    min-height: 44px;
+  }
+
   /* Stack action buttons full width on portrait mobile */
   .mobile-btn-stack {
     flex-direction: column !important;
+    gap: 0.6rem !important;
   }
 
   .mobile-btn-stack>button {
     width: 100% !important;
     flex: 1 1 100% !important;
-    min-height: 46px;
+    min-height: 48px;
     /* Comfort touch height */
+    font-size: 0.88rem !important;
   }
 
   pre {
     font-size: 0.75rem !important;
     padding: 0.65rem !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
   }
 }
 
-/* 380px Breakpoint: Compact Handsets */
-@media (max-width: 380px) {
+/* 400px Breakpoint: Small & Compact Mobile Phones (iPhone SE, Galaxy A, etc.) */
+@media (max-width: 400px) {
   body {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
   }
 
   .main-content-container {
     padding: 0.5rem;
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
   }
 
   .nav-btn {
-    padding: 0.5rem 0.75rem;
+    padding: 0.55rem 0.8rem;
     font-size: 0.8rem;
+    min-height: 44px;
   }
 
   .glass-card {
-    padding: 0.8rem !important;
+    padding: 0.75rem !important;
+    border-radius: 10px;
+  }
+
+  .responsive-grid-4 {
+    grid-template-columns: 1fr;
   }
 
   .autonomy-regime-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.2rem;
   }
 
   .autonomy-regime-grid>button {
-    padding: 0.5rem 0.1rem !important;
-    font-size: 0.7rem !important;
-    min-height: 40px;
+    padding: 0.4rem 0.1rem !important;
+    font-size: 0.72rem !important;
+    min-height: 42px;
+  }
+
+  .logo-badge {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.45rem;
+  }
+}
+
+/* 340px Breakpoint: Ultra-Compact Handsets & Foldable Front Displays */
+@media (max-width: 340px) {
+  body {
+    font-size: 0.8rem;
+  }
+
+  .autonomy-regime-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -519,4 +576,5 @@ a {
   .pulse-indicator {
     animation: none !important;
   }
-}
+}
+
