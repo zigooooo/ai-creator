@@ -1,16 +1,18 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/dist",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "client/dist" }
-    }
-  ],
-  "routes": [
+      "source": "/api/(.*)",
+      "destination": "/api/index"
+    },
     {
-      "src": "/(.*)",
-      "dest": "/client/dist/$1"
+      "source": "/health",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/((?!api|health).*)",
+      "destination": "/index.html"
     }
   ]
 }
