@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CommandCenter } from './components/CommandCenter';
 import { DiscoveryFeed } from './components/DiscoveryFeed';
 import { ExperimentLab } from './components/ExperimentLab';
@@ -23,23 +23,27 @@ export const App: React.FC = () => {
   const [analytics, setAnalytics] = useState<any[]>([]);
   const [questions, setQuestions] = useState<any[]>([]);
   const [agentLogs, setAgentLogs] = useState<any[]>([]);
+  const [cycleActive, setCycleActive] = useState(false);
+  const [cycleSecondsLeft, setCycleSecondsLeft] = useState(120);
+  const cycleTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const API_BASE = 'http://localhost:3001/api';
 
   const fetchAllData = async () => {
     try {
       const [wfRes, trRes, gapRes, oppRes, hypRes, expRes, evRes, cntRes, pubRes, knRes, anRes, qRes, logRes] = await Promise.all([
-        fetch('/api/workflows/state').then(r => r.json()),
-        fetch('/api/trends').then(r => r.json()),
-        fetch('/api/gaps').then(r => r.json()),
-        fetch('/api/opportunities').then(r => r.json()),
-        fetch('/api/hypotheses').then(r => r.json()),
-        fetch('/api/experiments').then(r => r.json()),
-        fetch('/api/system/events').then(r => r.json()),
-        fetch('/api/content').then(r => r.json()),
-        fetch('/api/publications').then(r => r.json()),
-        fetch('/api/knowledge').then(r => r.json()),
-        fetch('/api/analytics').then(r => r.json()),
-        fetch('/api/questions').then(r => r.json()),
-        fetch('/api/system/agent-logs').then(r => r.json())
+        fetch(`${API_BASE}/workflows/state`).then(r => r.json()),
+        fetch(`${API_BASE}/trends`).then(r => r.json()),
+        fetch(`${API_BASE}/gaps`).then(r => r.json()),
+        fetch(`${API_BASE}/opportunities`).then(r => r.json()),
+        fetch(`${API_BASE}/hypotheses`).then(r => r.json()),
+        fetch(`${API_BASE}/experiments`).then(r => r.json()),
+        fetch(`${API_BASE}/system/events`).then(r => r.json()),
+        fetch(`${API_BASE}/content`).then(r => r.json()),
+        fetch(`${API_BASE}/publications`).then(r => r.json()),
+        fetch(`${API_BASE}/knowledge`).then(r => r.json()),
+        fetch(`${API_BASE}/analytics`).then(r => r.json()),
+        fetch(`${API_BASE}/questions`).then(r => r.json()),
+        fetch(`${API_BASE}/system/agent-logs`).then(r => r.json())
       ]);
 
       setWorkflowState(wfRes);
@@ -64,7 +68,7 @@ export const App: React.FC = () => {
     fetchAllData();
 
     // Connect real-time Server-Sent Events (SSE) Stream
-    const evtSource = new EventSource('/api/events');
+    const evtSource = new EventSource(`${API_BASE}/events`);
     evtSource.onmessage = (event) => {
       try {
         const parsed = JSON.parse(event.data);
@@ -80,16 +84,50 @@ export const App: React.FC = () => {
     return () => {
       evtSource.close();
       clearInterval(interval);
+      if (cycleTimerRef.current) {
+        clearInterval(cycleTimerRef.current);
+        cycleTimerRef.current = null;
+      }
     };
   }, []);
 
   const handleTriggerDemo = async () => {
-    await fetch('/api/demo/run', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-    fetchAllData();
+    try {
+      await fetch(`${API_BASE}/workflows/demo/run`, { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+      fetchAllData();
+    } catch (error) {
+      console.error('Failed to trigger demo workflow:', error);
+    }
+  };
+
+  const stopCycle = () => {
+    if (cycleTimerRef.current) {
+      clearInterval(cycleTimerRef.current);
+      cycleTimerRef.current = null;
+    }
+    setCycleActive(false);
+    setCycleSecondsLeft(120);
+  };
+
+  const startCycle = () => {
+    if (cycleActive) return;
+    setCycleActive(true);
+    setCycleSecondsLeft(120);
+    void handleTriggerDemo();
+
+    cycleTimerRef.current = setInterval(() => {
+      setCycleSecondsLeft((prev) => {
+        if (prev <= 1) {
+          void handleTriggerDemo();
+          return 120;
+        }
+        return prev - 1;
+      });
+    }, 1000);
   };
 
   const handleUpdateAutonomy = async (level: number) => {
-    await fetch('/api/workflows/autonomy-level', {
+    await fetch(`${API_BASE}/workflows/autonomy-level`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ level })
@@ -98,7 +136,7 @@ export const App: React.FC = () => {
   };
 
   const handleApproveContent = async (draftId: string) => {
-    await fetch(`/api/content/${draftId}/approve`, { method: 'POST' });
+    await fetch(`${API_BASE}/content/${draftId}/approve`, { method: 'POST' });
     fetchAllData();
   };
 
@@ -136,6 +174,10 @@ export const App: React.FC = () => {
                 workflowState={workflowState}
                 onTriggerDemo={handleTriggerDemo}
                 onUpdateAutonomy={handleUpdateAutonomy}
+                cycleActive={cycleActive}
+                cycleSecondsLeft={cycleSecondsLeft}
+                onStartCycle={startCycle}
+                onStopCycle={stopCycle}
               />
             </div>
             <div>

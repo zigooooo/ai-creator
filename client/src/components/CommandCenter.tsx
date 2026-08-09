@@ -4,9 +4,13 @@ interface Props {
   workflowState: any;
   onTriggerDemo: () => void;
   onUpdateAutonomy: (level: number) => void;
+  cycleActive: boolean;
+  cycleSecondsLeft: number;
+  onStartCycle: () => void;
+  onStopCycle: () => void;
 }
 
-export const CommandCenter: React.FC<Props> = ({ workflowState, onTriggerDemo, onUpdateAutonomy }) => {
+export const CommandCenter: React.FC<Props> = ({ workflowState, onTriggerDemo, onUpdateAutonomy, cycleActive, cycleSecondsLeft, onStartCycle, onStopCycle }) => {
   const [autonomyLevel, setAutonomyLevel] = useState<number>(workflowState?.autonomyLevel || 3);
 
   useEffect(() => {
@@ -72,11 +76,11 @@ export const CommandCenter: React.FC<Props> = ({ workflowState, onTriggerDemo, o
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
         <button
           onClick={onTriggerDemo}
           style={{
-            flex: 1,
+            flex: '1 1 300px',
             padding: '0.65rem 1rem',
             background: 'linear-gradient(135deg, #6366f1, #06b6d4)',
             border: 'none',
@@ -90,6 +94,26 @@ export const CommandCenter: React.FC<Props> = ({ workflowState, onTriggerDemo, o
         >
           🚀 Trigger Autonomous Mission Scenario
         </button>
+        <button
+          onClick={cycleActive ? onStopCycle : onStartCycle}
+          style={{
+            flex: '1 1 180px',
+            padding: '0.65rem 1rem',
+            background: cycleActive ? 'linear-gradient(135deg, #ef4444, #dc2626)' : 'linear-gradient(135deg, #10b981, #059669)',
+            border: 'none',
+            borderRadius: '8px',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+            boxShadow: cycleActive ? '0 4px 15px rgba(239, 68, 68, 0.4)' : '0 4px 15px rgba(16, 185, 129, 0.4)'
+          }}
+        >
+          {cycleActive ? '🛑 Stop Cycle' : '⏱️ Start 2-Min Cycle'}
+        </button>
+      </div>
+      <div style={{ marginTop: '0.75rem', color: '#94a3b8', fontSize: '0.82rem' }}>
+        {cycleActive ? `Next auto-run in ${cycleSecondsLeft}s` : 'Cycle mode is inactive'}
       </div>
     </div>
   );

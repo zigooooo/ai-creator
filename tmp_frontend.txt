@@ -1,0 +1,1 @@
+BACKEND; curl -i -s -X POST http://localhost:3001/api/workflows/demo/run -H \" Content-Type: "application/json\ -d '{}'  ; type tmp_backend.txt ; echo FRONTEND; curl -i -s -X POST http://localhost:5175/api/workflows/demo/run -H \Content-Type:" "application/json\ -d '{}'  ; type tmp_frontend.txt

@@ -4,12 +4,33 @@ import { sseManager } from './events.sse.js';
 import { autonomyLoop } from '../orchestrator/autonomy-loop.js';
 import { stateMachine } from '../orchestrator/state-machine.js';
 import { AutonomyLevel, ContentDraft, ContentReview } from '../types/index.js';
+import { getAgentFeed, initializeAutonomousAgent } from '../agents/autonomous-publisher.service.js';
 
 export const router = Router();
 
 // SSE Stream endpoint
 router.get('/events', (req, res) => {
   sseManager.addClient(res);
+});
+
+// Autonomous persona initialization endpoint
+router.post('/agent/init', async (req, res) => {
+  const payload = req.body;
+  const persona = payload?.persona || {};
+  const agent = await initializeAutonomousAgent({
+    persona: {
+      name: persona.name || 'Ada',
+      domain: persona.domain || 'AI Security'
+    }
+  });
+  res.json(agent);
+});
+
+// Autonomous persona feed endpoint
+router.get('/agent/feed', async (req, res) => {
+  const agentId = typeof req.query.agentId === 'string' ? req.query.agentId : '';
+  const feed = await getAgentFeed(agentId);
+  res.json(feed);
 });
 
 // Autonomy Level and Control
@@ -34,6 +55,18 @@ router.post('/workflows/autonomy-level', (req, res) => {
 
 // Trigger End-to-End Autonomous Mission Demo
 router.post('/demo/run', async (req, res) => {
+  const { simulatedArticle } = req.body;
+  try {
+    await autonomyLoop.runFullLoop(simulatedArticle);
+    res.json({ success: true, message: 'Autonomous research mission completed successfully.', state: stateMachine.getState() });
+  } catch (err: any) {
+    console.error('Demo Loop Error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Keep the workflow route alias for UI consistency
+router.post('/workflows/demo/run', async (req, res) => {
   const { simulatedArticle } = req.body;
   try {
     await autonomyLoop.runFullLoop(simulatedArticle);
