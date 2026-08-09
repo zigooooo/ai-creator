@@ -26,7 +26,7 @@ export const App: React.FC = () => {
   const [cycleActive, setCycleActive] = useState(false);
   const [cycleSecondsLeft, setCycleSecondsLeft] = useState(120);
   const cycleTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const API_BASE = 'http://localhost:3001/api';
+  const API_BASE = '/api';
 
   const fetchAllData = async () => {
     try {

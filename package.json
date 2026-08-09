@@ -8,7 +8,8 @@
     "start": "node dist/server.js",
     "dev:backend": "npm run build && node dist/server.js",
     "dev:frontend": "vite client --port 5173",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "npm run build && node dist/server.js",
+    "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "test": "node --test dist/**/*.test.js",
     "demo": "npm run build && node dist/scripts/run-demo.js"
   },
