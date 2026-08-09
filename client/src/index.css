@@ -1,18 +1,18 @@
 :root {
-  --bg-dark: #05070d;
-  --bg-card: linear-gradient(135deg, rgba(30, 41, 89, 0.85) 0%, rgba(20, 27, 61, 0.9) 100%);
-  --bg-card-hover: linear-gradient(135deg, rgba(49, 46, 129, 0.9) 0%, rgba(30, 41, 89, 0.95) 100%);
-  --border-glow: rgba(99, 102, 241, 0.4);
-  --accent-cyan: #06b6d4;
-  --accent-indigo: #6366f1;
-  --accent-purple: #a855f7;
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
+  --bg-dark: #000000;
+  --bg-card: #0a0a0a;
+  --bg-card-hover: #121212;
+  --border-glow: rgba(255, 255, 255, 0.2);
+  --accent-cyan: #ffffff;
+  --accent-indigo: #ffffff;
+  --accent-purple: #ffffff;
+  --accent-emerald: #ffffff;
+  --accent-amber: #e2e8f0;
+  --accent-rose: #ffffff;
   --text-main: #ffffff;
-  --text-muted: #cbd5e1;
-  --text-dim: #94a3b8;
-  --font-main: 'Inter', system-ui, sans-serif;
+  --text-muted: #e2e8f0;
+  --text-dim: #a1a1aa;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
   --font-code: 'JetBrains Mono', monospace;
 }
 
@@ -23,11 +23,13 @@
 }
 
 body {
-  background-color: var(--bg-dark);
+  background-color: #000000;
   background-image:
-    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
-    radial-gradient(at 90% 90%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(168, 85, 247, 0.1) 0px, transparent 65%);
+    radial-gradient(at 15% 15%, rgba(255, 255, 255, 0.04) 0px, transparent 40%),
+    radial-gradient(at 85% 85%, rgba(255, 255, 255, 0.03) 0px, transparent 40%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   color: var(--text-main);
   font-family: var(--font-main);
   min-height: 100vh;
@@ -35,21 +37,21 @@ body {
   line-height: 1.5;
 }
 
-/* Glassmorphism Card Utility - Colorful & Radiant */
+/* Glassmorphism Card Utility - Obsidian Black & Crisp White Contrast */
 .glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(129, 140, 248, 0.25);
+  background: #0a0a0a;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease-in-out;
 }
 
 .glass-card:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(168, 85, 247, 0.5);
-  box-shadow: 0 14px 40px rgba(99, 102, 241, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  background: #121212;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 40px rgba(255, 255, 255, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
@@ -59,9 +61,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(11, 15, 25, 0.85);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -74,31 +76,31 @@ body {
 }
 
 .logo-badge {
-  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-cyan));
+  background: #ffffff;
+  color: #000000;
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
-  color: #fff;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .nav-tabs {
   display: flex;
   gap: 0.5rem;
-  background: rgba(15, 23, 42, 0.6);
-  padding: 0.25rem;
+  background: #0d0d0d;
+  padding: 0.3rem;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .nav-btn {
   background: transparent;
-  border: none;
-  color: var(--text-muted);
+  border: 1px solid transparent;
+  color: #e2e8f0;
   padding: 0.5rem 1rem;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.85rem;
   border-radius: 8px;
   cursor: pointer;
@@ -106,14 +108,17 @@ body {
 }
 
 .nav-btn:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-btn.active {
-  background: var(--accent-indigo);
-  color: #fff;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+  background: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Status Indicators */
@@ -121,58 +126,58 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--accent-emerald);
-  box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.4);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
   }
 
   70% {
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
 
-/* Badge Styles */
+/* Badge Styles - High Contrast Monochrome */
 .badge {
   display: inline-block;
-  padding: 0.2rem 0.6rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 6px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .badge-indigo {
-  background: rgba(99, 102, 241, 0.2);
-  color: #818cf8;
-  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: #18181b;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .badge-emerald {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
 }
 
 .badge-amber {
-  background: rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.4);
+  background: #27272a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .badge-rose {
-  background: rgba(244, 63, 94, 0.2);
-  color: #f43f5e;
-  border: 1px solid rgba(244, 63, 94, 0.4);
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }
 
 /* Layout Grids & Utility Classes */

@@ -14,7 +14,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <div className="glass-card" style={{ padding: '1.25rem' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f43f5e', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           ✍️ Persona Content Studio & Quality Gate
         </h3>
 
@@ -25,17 +25,17 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
               <span className="badge badge-emerald">Version {latestDraft.version}</span>
             </div>
 
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#f8fafc', marginBottom: '0.5rem' }}>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.5rem' }}>
               {latestDraft.title}
             </h4>
 
             <div style={{
-              background: 'rgba(0,0,0,0.4)',
+              background: '#000000',
               padding: '0.85rem',
               borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.2)',
               fontSize: '0.85rem',
-              color: '#e2e8f0',
+              color: '#ffffff',
               whiteSpace: 'pre-wrap',
               maxHeight: '220px',
               overflowY: 'auto',
@@ -46,15 +46,15 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
             </div>
 
             {latestReview && (
-              <div style={{ background: 'rgba(0,0,0,0.25)', padding: '0.85rem', borderRadius: '8px', marginBottom: '1rem' }}>
-                <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#38bdf8', marginBottom: '0.4rem' }}>
+              <div style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.18)', padding: '0.85rem', borderRadius: '8px', marginBottom: '1rem' }}>
+                <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.4rem', letterSpacing: '0.5px' }}>
                   QUALITY & ORIGINALITY GATE SCORE: {latestReview.score?.overallScore}/100
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.5rem', fontSize: '0.75rem', color: '#94a3b8' }}>
-                  <div>Factual Correctness: <strong style={{ color: '#34d399' }}>{latestReview.score?.factualCorrectness}%</strong></div>
-                  <div>Citation Validity: <strong style={{ color: '#34d399' }}>{latestReview.score?.citationValidity}%</strong></div>
-                  <div>Originality: <strong style={{ color: '#818cf8' }}>{latestReview.score?.originality}%</strong></div>
-                  <div>Safety Rating: <strong style={{ color: '#34d399' }}>{latestReview.score?.safety}%</strong></div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.5rem', fontSize: '0.75rem', color: '#a1a1aa' }}>
+                  <div>Factual Correctness: <strong style={{ color: '#ffffff' }}>{latestReview.score?.factualCorrectness}%</strong></div>
+                  <div>Citation Validity: <strong style={{ color: '#ffffff' }}>{latestReview.score?.citationValidity}%</strong></div>
+                  <div>Originality: <strong style={{ color: '#ffffff' }}>{latestReview.score?.originality}%</strong></div>
+                  <div>Safety Rating: <strong style={{ color: '#ffffff' }}>{latestReview.score?.safety}%</strong></div>
                 </div>
               </div>
             )}
@@ -66,14 +66,14 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
                   width: '100%',
                   padding: '0.65rem',
                   minHeight: '44px',
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
-                  border: 'none',
+                  background: '#ffffff',
+                  border: '1px solid #ffffff',
                   borderRadius: '8px',
-                  color: '#fff',
-                  fontWeight: 700,
+                  color: '#000000',
+                  fontWeight: 800,
                   fontSize: '0.85rem',
                   cursor: 'pointer',
-                  boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)'
+                  boxShadow: '0 4px 20px rgba(255, 255, 255, 0.25)'
                 }}
               >
                 ✅ Human Approval: Approve & Publish Content
@@ -85,7 +85,7 @@ export const ContentStudio: React.FC<Props> = ({ content, publications, onApprov
             )}
           </div>
         ) : (
-          <div style={{ fontSize: '0.85rem', color: '#64748b' }}>No drafts created yet.</div>
+          <div style={{ fontSize: '0.85rem', color: '#a1a1aa' }}>No drafts created yet.</div>
         )}
       </div>
     </div>
