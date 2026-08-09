@@ -76,7 +76,7 @@ export const CommandCenter: React.FC<Props> = ({ workflowState, onTriggerDemo, o
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }} className="mobile-btn-stack">
         <button
           onClick={onTriggerDemo}
           style={{

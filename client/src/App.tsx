@@ -166,7 +166,7 @@ export const App: React.FC = () => {
         </nav>
       </header>
 
-      <main style={{ padding: '1.5rem', maxWidth: '1600px', margin: '0 auto' }}>
+      <main className="main-content-container">
         {activeTab === 'command' && (
           <div className="dashboard-grid">
             <div>

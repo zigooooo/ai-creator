@@ -1,4 +1,4 @@
-# 📜 PROMPTS.md — AI Usage Log & Vibe-Coding Trajectory
+# 📜 PROMPT.md — AI Usage Log & Vibe-Coding Trajectory
 
 > **Hackathon AI-Usage Verification Document**  
 > **Project**: Autonomous AI Creator — From Prompt-Driven to Curiosity-Driven AI  
@@ -73,7 +73,7 @@ This document logs the prompts, architectural instructions, and vibe-coding iter
 
 ---
 
-##📱 Prompt 5: Android Ergonomics, Vibrant Non-Dark Cards & GitHub Sync
+## 📱 Prompt 5: Android Ergonomics, Vibrant Non-Dark Cards & GitHub Sync
 
 **User Prompt**:
 > "make it android comfartable so add media query https://github.com/zigooooo/Ai-Creator can push it onto this and redeploy it vercel with gemini free version llm and give me github repo and live deploy ment repo and prompt.md make ui in background dark and cars not dark any color"
